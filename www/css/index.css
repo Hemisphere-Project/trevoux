@@ -1,0 +1,226 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+
+ 
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+
+.ui-page { -webkit-backface-visibility: hidden; }
+
+/* Portrait layout (default) */
+.app {
+                                   /* offset horizontal: half of text area width */
+}
+
+
+
+li { 
+	background: #17306B !important;
+}
+li:nth-child(odd) { 
+	background: #2248A1 !important; 
+}
+
+.hidden{
+	visibility:hidden;	
+}
+
+
+/** nav footer **/
+
+#nav-foot{
+	border-style: none;
+	height:60px;
+}
+#nav-foot a{
+	color:white;
+	font-size: 2.2em;
+}
+#nav-foot a:active{
+	color: #557cc8;
+}
+.nf-btn{
+	padding-top:8px !important;
+}
+#nf-back-btn{
+	padding-left:30px;
+	text-align: left;	
+}
+#nf-home-btn{
+	text-align: center;	
+}
+#nf-settings-btn{
+	padding-right:30px;
+	text-align: right;	
+}
+
+/** home - balades **/
+
+#balades-header{
+	height:100px;
+	font-size: 3em;
+	font-family: "goudysans";
+	letter-spacing: 0.03em;
+	background-color: #122654;
+	border-style: none;
+}
+#balades-header .ui-title{
+	margin: 0 20%;
+	padding: 0.5em 0;
+}
+
+#home .balades-li-title{
+	font-size: 1.5em;
+	letter-spacing: 0.03em;
+	/*font-family: "goudysami";*/
+	font-family: "goudysans";	
+}
+#home .balades-li-text{
+	font-size: 1.0em;
+	letter-spacing: 0.1em;
+	font-family: "goudyolst";	
+}
+#home .ui-btn{
+	background: none;
+}
+#home .ui-btn:active{
+	background: #557cc8;	
+}
+
+/** balades download **/
+#balades-download{
+	text-align: center;
+}
+
+.balades-title-container{
+	margin-left:20px;	
+}
+.balades-title{
+	margin-top:30px;
+	font-size: 2.5em;
+	font-family: "goudysans";
+	letter-spacing: 0.03em;
+	text-align: left;
+}
+.balades-sub-title{
+	text-align: left;
+}
+.balades-download-btn-container{
+	margin-top:40px;
+}
+.balades-download-btn{
+	margin-top:30px;
+	margin-bottom: 30px;
+	width:120px;
+}
+.balades-credits{
+	margin-top:40px;
+	font-size: 0.8em;
+}
+/** balade **/
+
+#balade-header{
+	height:100px;
+	background-color: #122654;
+	padding-left: 20px;
+}
+
+#balade #balade-header .title{
+	font-size: 2.4em;
+	letter-spacing: 0.03em;
+	font-family: "goudysans";	
+}
+#balade #balade-header .sub-title{
+	font-size: 1.4em;
+	letter-spacing: 0.1em;
+	font-family: "goudyolst";	
+	
+}
+#balade #etapes-list{
+	margin-bottom: 60px;	
+}
+#balade .ui-listview>li{
+	padding-left:20px;
+	padding-top:30px;
+	padding-bottom:30px;	
+}
+#balade .ui-listview>li a{
+	color:white;
+	text-decoration: none;
+}
+#balade .ui-listview>li a:active{
+	color: #557cc8;
+}
+
+
+/** etape **/
+#etape{
+	text-align:center;	
+}
+video{
+	max-width: 100%	;
+	margin-top: 120px;
+}
+
+
+
+
+/** MEDIA QUERIES **/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px) {
+
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+
+}
+/* Small Devices, Tablets */
+@media screen and (max-width : 768px) {
+
+}
+ /* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+	
+	#balades-header{
+		height:60px;	
+		font-size: 2em;
+	}
+	#balades-header .ui-title{
+		padding: 0.3em 0;
+	}
+	#nav-foot{
+		height:60px;
+	}
+}
+

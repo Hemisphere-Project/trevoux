@@ -1,0 +1,19 @@
+{
+    "version": "1.0.0",
+    "name": "com.moust.cordova.videoplayer",
+    "cordova_name": "Video Player",
+    "description": "Native Video Player Plugin",
+    "license": "MIT",
+    "repo": "https://github.com/moust/cordova-plugin-videoplayer.git",
+    "issue": "https://github.com/moust/cordova-plugin-videoplayer/issues",
+    "keywords": [
+        "cordova",
+        "media",
+        "player",
+        "video"
+    ],
+    "platforms": [
+        "android"
+    ],
+    "engines": []
+}

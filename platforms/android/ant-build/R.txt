@@ -1,0 +1,7 @@
+int drawable icon 0x7f020000
+int drawable screen 0x7f020001
+int raw station2 0x7f040000
+int string activity_name 0x7f050002
+int string app_name 0x7f050000
+int string launcher_name 0x7f050001
+int xml config 0x7f030000
