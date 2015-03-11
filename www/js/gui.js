@@ -2,6 +2,7 @@ var GUI = {
 	
 	config:{},
 	medias:{},
+	nowPlaying:"none",
 	audioPlayer:null,
 	init:function(){
 					$(document).on("mobileinit",function() {
@@ -9,7 +10,7 @@ var GUI = {
 					});
 					$(document).ready(function() {
 							$( "[data-role='footer']" ).toolbar({ theme: "a" });
-							window.location.hash = 'home';
+							window.location.hash = 'lng-select';
 							$.mobile.initializePage();
 							
 							$.getJSON( "trevoux.config", function( data ) {
@@ -27,12 +28,28 @@ var GUI = {
 								var direction = data.state.direction;
 								if (direction == 'back'){ // when the back btn is pressed
 									// do something
-									//console.log(data);
+									//console.log("back");
 								}
 							});
 							
+							AudioInterface.init();
+							
 							// remplacer par touch end
 							$("#balades-download .balades-download-btn").on("click",GUI.downloadMediaList);
+							
+							$("#lng-select-fr").on("click",function(event){
+								GUI.config.lang = "fr";
+								$("body").pagecontainer("change","#home");
+								$("#nav-foot").show();
+							});
+							$("#lng-select-en").on("click",function(event){
+								GUI.config.lang = "en";
+								$("body").pagecontainer("change","#home");
+								$("#nav-foot").show();
+							});
+							$("#nf-back-btn").on("click",GUI.onBackButton);
+							$("#nf-home-btn").on("click",GUI.onHomeButton);
+							$("#nf-settings-btn").on("click",GUI.onSettingsButton);
 							
 					});
 					
@@ -49,6 +66,8 @@ var GUI = {
 		/*if(device.platform == "Android"){
 			console.log("ready tight");
 		}*/
+		
+		document.addEventListener("backbutton", GUI.onHardBackButton, false);
 		
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
 			function(fs) {
@@ -69,7 +88,7 @@ var GUI = {
 							console.log(this.result);
 							GUI.medias = JSON.parse(this.result);
 							//document.body.appendChild(txtArea);
-							GUI.initHome();
+							//GUI.initHome();
 					};
 					reader.readAsText(file);
 			}, GUI.onFileSystemError);
@@ -88,7 +107,7 @@ var GUI = {
 						//console.log(fileEntry);
 						GUI.writeMediaConfig(fileEntry,function(){
 							//GUI.createMediaDirStructure();	
-							GUI.initHome();
+							//GUI.initHome();
 						});
 						
 					}, GUI.onFileSystemError);
@@ -178,12 +197,8 @@ var GUI = {
 		// create directory structure
 	},
 	initHome:function(){
-		//console.log(GUI.medias);
-		//console.log('ok');
 		$("#home #balads-list a").each(function(index){
-			//console.log(index+"  "+$(this));	
 			if(GUI.medias[GUI.config.lang].balads[index].downloaded){
-				//$(this).attr("href", "#balade?balad-index="+index);
 				$(this).attr("href", "#balades-download?downloaded=true&balad-index="+index);
 			}else{
 				$(this).attr("href", "#balades-download?downloaded=false&balad-index="+index);
@@ -195,16 +210,21 @@ var GUI = {
 		var index=parseInt(this.hash.substring(this.hash.lastIndexOf("#balad-index=")+13));
 		
 		console.log("download !!"+index);
-		$(this).addClass("ui-disabled");
+		//$(this).addClass("ui-disabled");
+		$(this).addClass("hidden");
+		$("#balades-download .spinner").removeClass("hidden");
+		$("#balades-download .dl-progress").removeClass("hidden");
+		$("#balades-download .dl-progress").text(0);
 		var self = this;
 		
 		var etapesList = GUI.medias[GUI.config.lang].balads[index].etapes.slice(0);
+		var etapesnbr = etapesList.length;
 		
 		function syncDL(etape) 
 		{
 			if(etape){
 				console.log("download !!!!   "+etape.filepath);
-				GUI.downloadMedia(etape,function(){
+				GUI.downloadMedia(etape,(etapesnbr - etapesList.length -1),etapesnbr,function(){
 					return syncDL(etapesList.shift());		
 				});
 			}else{
@@ -213,10 +233,14 @@ var GUI = {
 				GUI.fileSystem.root.getFile('trevouxmedias.json', {}, function(fileEntry) {
 							GUI.writeMediaConfig(fileEntry,function(){
 								console.log("config updated !!!!!");
-								GUI.initHome();
-								$("#balades-download .balades-download-btn").removeClass("ui-disabled");
-								$("#balades-download .balades-download-btn").addClass('hidden');
+								//GUI.initHome();
+								//$("#balades-download .balades-download-btn").removeClass("ui-disabled");
+								//$("#balades-download .balades-download-btn").addClass('hidden');
+								$("#balades-download .spinner").addClass('hidden');
+								$("#balades-download .dl-progress").addClass('hidden');
+								
 								GUI.addBDClick(index);
+								
 							});
 				}, GUI.onFileSystemError);
 			}
@@ -228,15 +252,17 @@ var GUI = {
 
 		
 	},
-	downloadMedia:function(media,onfinish){
+	downloadMedia:function(media,ei,en,onfinish){
 		var ft = new FileTransfer();
 		var uri = encodeURI(GUI.config.mediasUrl+media.filepath);
 		var downloadPath = cordova.file.dataDirectory + media.filepath;
 		//console.log(downloadPath);
 		ft.onprogress = function(progressEvent) {
 			if (progressEvent.lengthComputable) {
-				var perc = Math.floor(progressEvent.loaded / progressEvent.total * 100);
+				//console.log(etapesfrac);
+				var perc = Math.floor(((progressEvent.loaded / progressEvent.total)/en + ei/en)*100);
 				console.log(perc + "% loaded...");
+				$("#balades-download .dl-progress").text(perc);
 			} else {
 				console.log("Loading");
 			}
@@ -254,10 +280,67 @@ var GUI = {
 		});		
 	},
 	addBDClick:function(index){
-		$("#balades-download-container").append('<a id="balad-btn" href="#balade?balad-index='+index+'" data-transition="slide">GO !</a>');
+		//$("#balades-download-container").append('<a id="balad-btn" href="#balade?balad-index='+index+'" data-transition="slide">GO !</a>');
+		$("#balades-download .forward").attr("href", "#balade?balad-index="+index);
+		$("#balades-download .forward").removeClass("hidden");
 	},
 	removeBDClick:function(){
-		$("#balades-download-container #balad-btn").remove();
+		//$("#balades-download-container #balad-btn").remove();
+		$("#balades-download .forward").addClass("hidden");
+	},
+	showHTMLVideo:function(){
+		$(".video-container").removeClass("hidden");
+		//$("#etape #myvideo").addClass(".hidden");
+	},
+	hideHTMLVideo:function(){
+		$(".video-container").addClass("hidden");
+	},
+	showAudioInterface:function(){
+		$(".audio-player-container").removeClass("hidden");
+	},
+	hideAudioInterface:function(){
+		$(".audio-player-container").addClass("hidden");
+	},
+	stopAll:function(){
+		console.log(GUI.nowPlaying);
+		if(GUI.nowPlaying == "sound"){
+			AudioInterface.stop();
+		}else if(GUI.nowPlaying == "androidVideo"){
+			//VideoPlayer.close();
+		}else if(GUI.nowPlaying == "iOSVideo"){
+			$('video')[0].pause();	
+		}
+		GUI.nowPlaying = "none";
+	},
+	onSettingsButton:function(event){
+		$("body").pagecontainer("change","#settings");
+	},
+	onHomeButton:function(event){
+		$("body").pagecontainer("change","#home");
+	},
+	onBackButton:function(event){
+		console.log();
+		var currentPageId = $("body").pagecontainer( "getActivePage" )[0].id;
+		switch(currentPageId){
+			case "home":
+				$("body").pagecontainer("change","#lng-select");
+			break;
+			case "balades-download":
+				window.history.back();
+			break;
+			case "balade":
+				window.history.back();
+			break;
+			case "etape":
+				window.history.back();
+			break;
+			case "settings":
+				$("body").pagecontainer("change","#home");
+			break;
+		}
+	},
+	onHardBackButton:function(){
+		
 	},
 	pageChange:function(event,ui){
 		// FROM PAGE
@@ -269,8 +352,9 @@ var GUI = {
 			case "balade":
 			break;
 			case "etape":
-				GUI.audioPlayer.stop();
-				GUI.audioPlayer.release();
+				GUI.hideHTMLVideo();
+				GUI.hideAudioInterface();
+				GUI.stopAll();
 			break;
 			case "settings":break;
 		}
@@ -278,10 +362,18 @@ var GUI = {
 		// TO PAGE
 		//console.log(ui.toPage);
 		switch(ui.toPage[0].id){
+			case "lng-select":
+				$("#nav-foot").hide();
+			break;
 			case "home":break;
 			case "balades-download":
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
-				var downloaded = (GetURLParameters(ui.absUrl)["downloaded"] === 'true');
+				//var downloaded = (GetURLParameters(ui.absUrl)["downloaded"] === 'true');
+				var downloaded = GUI.medias[GUI.config.lang].balads[baladIndex].downloaded;
+				console.log(GUI.config.lang);
+				console.log(GUI.medias[GUI.config.lang].balads[baladIndex]);
+				console.log(downloaded);
+				
 				console.log("downloaded  "+downloaded+"  "+GetURLParameters(ui.absUrl)["downloaded"]);
 				if(!isNaN(baladIndex)){
 					$("#balades-download .balades-title").text(GUI.config.balads[baladIndex].baladTitle);
@@ -307,7 +399,7 @@ var GUI = {
 					$("#balade #balade-header .title").text(GUI.config.balads[baladIndex].baladTitle);
 					$("#balade #balade-header .sub-title").text(GUI.config.balads[baladIndex].baladSubtitle);
 					for(var k=0;k <= GUI.config.balads[baladIndex].etapes[GUI.config.lang].length-1;k++){
-						$("#balade #etapes-list").append('<li data-icon="carat-r"><a href="#etape?balad-index='+baladIndex+'&etape-index='+k+'" data-transition="slide"><div class="etape-li-text">'+GUI.config.balads[baladIndex].etapes[GUI.config.lang][k]+'</div></a></li>');					
+						$("#balade #etapes-list").append('<li><a href="#etape?balad-index='+baladIndex+'&etape-index='+k+'" data-transition="fade"><div class="etape-li-text">'+GUI.config.balads[baladIndex].etapes[GUI.config.lang][k]+'</div></a></li>');					
 					}
 				}				
 				
@@ -317,45 +409,63 @@ var GUI = {
 				console.log("etape");
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
 				var etapeIndex = parseInt(GetURLParameters(ui.absUrl)["etape-index"]);
-				/*if(device.platform != "Android"){
-					console.log("not android");
-					$('video')[0].src = "medias/FR/CIVRIEUX/station2.mp4";
-					$('video')[0].play();
-				}else{
-					VideoPlayer.play("file:///android_asset/www/medias/FR/CIVRIEUX/station2.mp4",
-						{
-							volume: 0.5,
-							scalingMode: VideoPlayer.SCALE_TO_FIT
-						},
-						function () {
-							console.log("video completed");
-						},
-						function (err) {
-							console.log(err);
-						});
-				}*/
 				
+				if(baladIndex == 1){//video balad
+					window.resolveLocalFileSystemURL(cordova.file.dataDirectory+GUI.medias[GUI.config.lang].balads[baladIndex].etapes[etapeIndex].filepath,
+						function(entry){
+							if(device.platform != "Android"){
+								console.log("not android");
+								//$('video')[0].src = entry.toURL();
+								///$(".video-container").removeClass("hidden");
+								GUI.showHTMLVideo();
+								$('video')[0].src = entry.toURL();
+								console.log($('video')[0].src);
+								$('video')[0].play();
+								GUI.nowPlaying = "iOSVideo";
+							}else{
+								//VideoPlayer.play("file:///android_asset/www/medias/FR/CIVRIEUX/station2.mp4",
+								var filepath = entry.toURL();
+								VideoPlayer.play(filepath,
+									{
+										volume: 0.5,
+										scalingMode: VideoPlayer.SCALING_MODE.SCALE_TO_FIT
+									},
+									function () {
+										console.log("video completed");
+									},
+									function (err) {
+										console.log(err);
+									});
+								GUI.nowPlaying = "androidVideo";
+							}		
+						},function(err){
+							console.log(JSON.stringify(err));
+						});
 				//var my_media = new Media("file:///android_asset/www/medias/FR/PORT\ BERNALIN/S1\ Ile\ Beyne.mp3",
 				//var my_media = new Media("medias/FR/PORT\ BERNALIN/S1\ Ile\ Beyne.mp3",
-				console.log("ok");
-				window.resolveLocalFileSystemURL(cordova.file.dataDirectory+GUI.medias[GUI.config.lang].balads[baladIndex].etapes[etapeIndex].filepath,
-					function(entry){
-						console.log(entry);		
-						GUI.audioPlayer = new Media(entry.toInternalURL(),
-							// success callback
-							function () {
-									console.log("playAudio():Audio Success");
-							},
-							// error callback
-							function (err) {
-									console.log("playAudio():Audio Error: " + JSON.stringify(err));
-							}
-						);
-						// Play audio
-						GUI.audioPlayer.play();
-					},function(err){
-						console.log(JSON.stringify(err));	
+				}else{ // all other balads - audio
+					window.resolveLocalFileSystemURL(cordova.file.dataDirectory+GUI.medias[GUI.config.lang].balads[baladIndex].etapes[etapeIndex].filepath,
+						function(entry){
+							console.log(entry);		
+							GUI.audioPlayer = new Media(entry.toInternalURL(),
+								// success callback
+								function () {
+										console.log("playAudio():Audio Success");
+										AudioInterface.reinit();
+								},
+								// error callback
+								function (err) {
+										console.log("playAudio():Audio Error: " + JSON.stringify(err));
+								}
+							);
+							// Play audio
+							GUI.showAudioInterface();
+							//GUI.audioPlayer.play();
+							//GUI.nowPlaying = "sound";
+						},function(err){
+							console.log(JSON.stringify(err));	
 					});
+				}
 
 				
 			break;

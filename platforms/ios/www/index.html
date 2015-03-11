@@ -58,6 +58,29 @@
 			
 			<!-- lng select / les balades-->
 			<div id="lng-select" data-role="page">
+				<div id="head-deco" class="lng-deco"></div>
+				<div id="foot-deco" class="lng-deco"></div>
+				<div class="lng-container">
+					<p>
+							Découvrez les histoires de Saône et</br>
+							d’étangs en famille ou entre amis avec</br>
+							votre smartphone !</br>
+							En vous promenant vous découvrirez</br>
+							des sites préservés et des histoires</br>
+							insolites racontées par des passionnés de</br>
+							la Saône et des étangs.
+					</p>
+					<div id="lng-select-fr" class="lng-select-btn"></div>
+					<p>
+							Discover Saône stories and ponds with</br>
+							family and friends with your smartphone!</br>
+							As you walk you will discover preserved</br>
+							sites and unusual stories told by fans of</br>
+							the Saone and ponds.
+					</p>
+					<div id="lng-select-en" class="lng-select-btn"></div>
+				
+				</div>
 			</div>
 
 			<!-- home page -->
@@ -66,26 +89,27 @@
 						<h1>les balades :</h1>
 				</div>
 				<ul id="balads-list" data-role="listview" data-inset="false" data-filter="false">
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=0" data-transition="slide">
+						<!--<li data-icon="carat-r">-->
+						<li>
+							<a href="#balades-download?balad-index=0" data-transition="fade">
 								<div class="balades-li-title">Histoires de Saône</div>
 								<div class="balades-li-text">Trévoux</div>
 							</a>
 						</li>
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=1" data-transition="slide">
+						<li>
+							<a href="#balades-download?balad-index=1" data-transition="fade">
 								<div class="balades-li-title">Histoires d'étangs</div>
 								<div class="balades-li-text">Civrieux / Saint-André-de-Corcy</div>
 							</a>
 						</li>
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=2" data-transition="slide">
+						<li>
+							<a href="#balades-download?balad-index=2" data-transition="fade">
 								<div class="balades-li-title">Histoires de Saône</div>
 								<div class="balades-li-text">Maison éclusière Port Bernalin</div>
 							</a>
 						</li>
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=3" data-transition="slide">
+						<li>
+							<a href="#balades-download?balad-index=3" data-transition="fade">
 								<div class="balades-li-title">Histoires de Saône</div>
 								<div class="balades-li-text">Saint-Bernard</div>
 							</a>
@@ -95,13 +119,16 @@
 			
 			<!-- téléchargement balades -->
 			<div id="balades-download" data-role="page">
+				<div class="balades-title-container">
+					<div class="balades-title">Histoires d’étangs</div>
+					<div class="balades-sub-title">Civrieux / Saint-André-de-Corcy</div>
+				</div>
 				<div id="balades-download-container">
-					<div class="balades-title-container">
-						<div class="balades-title">Histoires d’étangs</div>
-						<div class="balades-sub-title">Civrieux / Saint-André-de-Corcy</div>
-					</div>
 					<div class="balades-download-btn-container">
-						<a class="balades-download-btn" href="#" data-inline="true" data-role="button" data-icon="star" data-theme="a">download</a>
+						<a class="balades-download-btn trevouxicon trevouxicon-download" href="#" data-inline="true" data-role="button" data-theme="a"></a>
+						<div class="spinner hidden"></div>
+						<div class="dl-progress hidden"></div>
+						<a class="forward trevouxicon trevouxicon-forward hidden" data-transition="fade"></a>
 					</div>
 					<div class="balades-credits">
 					<p>
@@ -139,8 +166,18 @@
 			
 			<!-- spot (audio / video) -->
 			<div id="etape" data-role="page">
-				<!--<video id="myvideo" width="400" height="222" src="medias/FR/CIVRIEUX/station2.mp4" controls="controls" ></video>-->
-				<!--<video id="video1" autobuffer controls="false"></video>-->
+				<div class="video-container hidden">
+				<video id="myvideo" src="" controls="controls" ></video>
+				<!--<video id="video1" class="hidden" autobuffer controls="controls"></video>-->
+				</div>
+				<div class="audio-player-container hidden">
+					<div class="audio-player">
+						<button id="pButton" class="play" data-inline="true"></button>
+						<div id="timeline">
+							<div id="playhead"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 			<!-- settings -->
@@ -155,7 +192,7 @@
 							<h1>My Title</h1>
 					</div>--> /header <!--
 					
-			<a href="#home" data-role="button" data-icon="star" data-theme="a" data-transition="slide" data-direction="reverse">home</a>
+			<a href="#home" data-role="button" data-icon="star" data-theme="a" data-transition="fade" data-direction="reverse">home</a>
 	 
 					<div data-role="content">
 							<p>Hello world</p>
@@ -180,16 +217,14 @@
 				<div id="nav-foot" data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
 					<div class="ui-grid-b center">
 							<div id="nf-back-btn" class="ui-block-a nf-btn">
-								<!--<a href="#home" data-transition="slide" data-direction="reverse" class="ui-shadow ui-btn ui-corner-all ui-icon-arrow-l ui-btn-icon-notext ui-btn-inline"></a>-->
-								<a href="#" data-rel="back" class="trevouxicon trevouxicon-back" data-transition="slide" data-direction="reverse" ></a>
+								<a href="#" class="trevouxicon trevouxicon-back" data-transition="fade" data-direction="reverse" ></a>
+								<!--<a href="#" data-rel="back" class="trevouxicon trevouxicon-back" data-transition="fade" data-direction="reverse" ></a>-->
 							</div>
 							<div id="nf-home-btn" class="ui-block-b nf-btn">
-								<!--<a class="ui-shadow ui-btn ui-corner-all ui-btn-icon-notext ui-btn-inline ui-icon-home"></a>-->
-								<a href="#home" class="trevouxicon trevouxicon-home" data-transition="slide" data-direction="reverse" ></a>
+								<a href="#" class="trevouxicon trevouxicon-home" data-transition="fade" data-direction="reverse" ></a>
 							</div>
 							<div id="nf-settings-btn" class="ui-block-c nf-btn">
-								<!--<a class="ui-shadow ui-btn ui-corner-all ui-icon-gear ui-btn-icon-notext ui-btn-inline"></a>-->
-								<a href="#settings" class="trevouxicon trevouxicon-settings" data-transition="slide" data-direction="reverse" ></a>
+								<a href="#" class="trevouxicon trevouxicon-settings" data-transition="fade" data-direction="reverse" ></a>
 							</div>
 					</div>
 				</div><!-- /footer -->				
@@ -200,6 +235,7 @@
 			<script type="text/javascript" src="cordova.js"></script>
 			<script type="text/javascript" src="js/index.js"></script>
 			<script type="text/javascript" src="js/gui.js"></script>
+			<script type="text/javascript" src="js/AudioInterface.js"></script>
 			<!--<script type="text/javascript" src="Html5Video.js"></script>-->
 			<script type="text/javascript" src="videoplayer.js"></script>
 			<script type="text/javascript" src="media.js"></script>

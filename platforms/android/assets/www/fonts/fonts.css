@@ -53,8 +53,8 @@
 }
 
 .trevouxicon{
-	font-family: 'trevoux';	
-	text-decoration: none;
+	font-family: 'trevoux' !important;	
+	text-decoration: none !important;
 }
 
 .trevouxicon-back:before {
@@ -65,4 +65,10 @@
 }
 .trevouxicon-settings:before {
   content: "\63";
+}
+.trevouxicon-download:before {
+  content: "\64";
+}
+.trevouxicon-forward:before {
+  content: "\65";
 }
