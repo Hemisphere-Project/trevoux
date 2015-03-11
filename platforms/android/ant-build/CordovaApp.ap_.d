@@ -198,7 +198,6 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/jquery.mobile-1.4.5.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/jquery.mobile-1.4.5.min.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/com.moust.cordova.videoplayer \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/jaeger.Html5Video \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/org.apache.cordova.file \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/org.apache.cordova.file-transfer \
@@ -206,8 +205,6 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/org.apache.cordova.splashscreen \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/com.moust.cordova.videoplayer/www \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/com.moust.cordova.videoplayer/www/videoplayer.js \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/jaeger.Html5Video/www \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/jaeger.Html5Video/www/Html5Video.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/org.apache.cordova.device/www \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/org.apache.cordova.device/www/device.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/plugins/org.apache.cordova.file/www \

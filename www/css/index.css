@@ -323,7 +323,65 @@ video{
 .play{background: url('../img/play.png') no-repeat;}
 .pause{background: url('../img/pause.png') no-repeat;}
 
+.android-video-container{
+	top:0;
+	bottom:60px;
+	width: 100%;
+	position: absolute;	
+}
+#android-video-btn{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	height:60px; 
+	width: 60px;
+	border: none;
+	background-size: 50% 50%;
+	background-position: center;
+	margin: auto;	
+}
 
+/** settings **/
+#settings{
+}
+
+#settings-header{
+	height:100px;
+	font-size: 3em;
+	font-family: "goudysans";
+	letter-spacing: 0.03em;
+	background-color: #122654;
+	border-style: none;
+}
+#settings-header .ui-title{
+	margin: 0 20%;
+	padding: 0.5em 0;
+}
+#settings li{
+	text-align:center;
+}
+.settings-li-title{
+	text-align: left;	
+	max-width: 300px;
+	margin: auto;
+	margin-bottom:20px;
+}
+#settings .balades-li-title{
+	font-size: 1.5em;
+	letter-spacing: 0.03em;
+	/*font-family: "goudysami";*/
+	font-family: "goudysans";	
+}
+#settings .balades-li-text{
+	font-size: 1.0em;
+	letter-spacing: 0.1em;
+	font-family: "goudyolst";	
+}
+.settings-btn{
+	font-size: 2.0em;	
+}
 
 /** MEDIA QUERIES **/
 

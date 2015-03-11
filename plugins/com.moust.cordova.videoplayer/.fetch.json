@@ -1,1 +1,1 @@
-{"source":{"type":"registry","id":"com.moust.cordova.videoplayer"}}
+{"source":{"type":"git","url":"https://github.com/moust/cordova-plugin-videoplayer.git","subdir":"."}}

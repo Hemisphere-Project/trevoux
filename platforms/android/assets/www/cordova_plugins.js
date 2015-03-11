@@ -8,20 +8,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/jaeger.Html5Video/www/Html5Video.js",
-        "id": "jaeger.Html5Video.Html5Video",
-        "clobbers": [
-            "plugins.html5Video"
-        ]
-    },
-    {
-        "file": "plugins/com.moust.cordova.videoplayer/www/videoplayer.js",
-        "id": "com.moust.cordova.videoplayer.VideoPlayer",
-        "clobbers": [
-            "VideoPlayer"
-        ]
-    },
-    {
         "file": "plugins/org.apache.cordova.media/www/MediaError.js",
         "id": "org.apache.cordova.media.MediaError",
         "clobbers": [
@@ -54,6 +40,13 @@ module.exports = [
         "id": "org.apache.cordova.device.device",
         "clobbers": [
             "device"
+        ]
+    },
+    {
+        "file": "plugins/com.moust.cordova.videoplayer/www/videoplayer.js",
+        "id": "com.moust.cordova.videoplayer.VideoPlayer",
+        "clobbers": [
+            "VideoPlayer"
         ]
     },
     {
@@ -208,11 +201,10 @@ module.exports.metadata =
 {
     "org.apache.cordova.splashscreen": "1.0.0",
     "org.apache.cordova.console": "0.2.13",
-    "jaeger.Html5Video": "1.2.1",
-    "com.moust.cordova.videoplayer": "1.0.0",
     "org.apache.cordova.media": "0.2.16",
     "org.apache.cordova.file-transfer": "0.5.0",
     "org.apache.cordova.device": "0.3.1-dev",
+    "com.moust.cordova.videoplayer": "1.0.0",
     "org.apache.cordova.file": "1.3.3"
 }
 // BOTTOM OF METADATA

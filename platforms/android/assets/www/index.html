@@ -89,26 +89,27 @@
 						<h1>les balades :</h1>
 				</div>
 				<ul id="balads-list" data-role="listview" data-inset="false" data-filter="false">
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=0" data-transition="fade">
+						<!--<li data-icon="carat-r">-->
+						<li>
+							<a href="#balades-download?balad-index=0" data-transition="fade">
 								<div class="balades-li-title">Histoires de Saône</div>
 								<div class="balades-li-text">Trévoux</div>
 							</a>
 						</li>
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=1" data-transition="fade">
+						<li>
+							<a href="#balades-download?balad-index=1" data-transition="fade">
 								<div class="balades-li-title">Histoires d'étangs</div>
 								<div class="balades-li-text">Civrieux / Saint-André-de-Corcy</div>
 							</a>
 						</li>
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=2" data-transition="fade">
+						<li>
+							<a href="#balades-download?balad-index=2" data-transition="fade">
 								<div class="balades-li-title">Histoires de Saône</div>
 								<div class="balades-li-text">Maison éclusière Port Bernalin</div>
 							</a>
 						</li>
-						<li data-icon="carat-r">
-							<a href="#balade?balad-index=3" data-transition="fade">
+						<li>
+							<a href="#balades-download?balad-index=3" data-transition="fade">
 								<div class="balades-li-title">Histoires de Saône</div>
 								<div class="balades-li-text">Saint-Bernard</div>
 							</a>
@@ -166,8 +167,11 @@
 			<!-- spot (audio / video) -->
 			<div id="etape" data-role="page">
 				<div class="video-container hidden">
-				<video id="myvideo" src="" controls="controls" ></video>
+					<video id="myvideo" src="" controls="controls" ></video>
 				<!--<video id="video1" class="hidden" autobuffer controls="controls"></video>-->
+				</div>
+				<div class="android-video-container hidden">
+					<button id="android-video-btn" class="play" data-inline="true"></button>
 				</div>
 				<div class="audio-player-container hidden">
 					<div class="audio-player">
@@ -183,34 +187,6 @@
 			<div id="settings" data-role="page">
 			</div>
 			
-			
-			<!-- second page -->
-		<!--	<div data-role="page" id="two">
-		
-					<div data-id="test" data-role="header">
-							<h1>My Title</h1>
-					</div>--> /header <!--
-					
-			<a href="#home" data-role="button" data-icon="star" data-theme="a" data-transition="fade" data-direction="reverse">home</a>
-	 
-					<div data-role="content">
-							<p>Hello world</p>
-					</div>--> /content <!--
-	 
-					<ul data-role="listview" data-inset="true" data-filter="true">
-							<li><a href="#">Acura</a></li>
-							<li><a href="#">Audi</a></li>
-							<li><a href="#">BMW</a></li>
-							<li><a href="#">Cadillac</a></li>
-							<li><a href="#">Ferrari</a></li>
-					</ul>
-					
-					<form>
-							<label for="slider-0">Input slider:</label>
-							<input type="range" name="slider" id="slider-0" value="25" min="0" max="100" />
-					</form>
-			
-			</div>-->
 			
 			
 				<div id="nav-foot" data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
@@ -235,7 +211,6 @@
 			<script type="text/javascript" src="js/index.js"></script>
 			<script type="text/javascript" src="js/gui.js"></script>
 			<script type="text/javascript" src="js/AudioInterface.js"></script>
-			<!--<script type="text/javascript" src="Html5Video.js"></script>-->
 			<script type="text/javascript" src="videoplayer.js"></script>
 			<script type="text/javascript" src="media.js"></script>
 			<script type="text/javascript" src="FileTransfert.js"></script>

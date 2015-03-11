@@ -4,6 +4,7 @@ var GUI = {
 	medias:{},
 	nowPlaying:"none",
 	audioPlayer:null,
+	androidVideoFilePath:null,
 	init:function(){
 					$(document).on("mobileinit",function() {
 							$.mobile.autoInitializePage = false;
@@ -47,6 +48,9 @@ var GUI = {
 								$("body").pagecontainer("change","#home");
 								$("#nav-foot").show();
 							});
+							
+							$("#android-video-btn").on("click",GUI.onAndroidVideoBtn);
+							
 							$("#nf-back-btn").on("click",GUI.onBackButton);
 							$("#nf-home-btn").on("click",GUI.onHomeButton);
 							$("#nf-settings-btn").on("click",GUI.onSettingsButton);
@@ -68,6 +72,7 @@ var GUI = {
 		}*/
 		
 		document.addEventListener("backbutton", GUI.onHardBackButton, false);
+		document.addEventListener("pause", GUI.onAppPause, false);
 		
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
 			function(fs) {
@@ -88,7 +93,7 @@ var GUI = {
 							console.log(this.result);
 							GUI.medias = JSON.parse(this.result);
 							//document.body.appendChild(txtArea);
-							GUI.initHome();
+							//GUI.initHome();
 					};
 					reader.readAsText(file);
 			}, GUI.onFileSystemError);
@@ -107,7 +112,7 @@ var GUI = {
 						//console.log(fileEntry);
 						GUI.writeMediaConfig(fileEntry,function(){
 							//GUI.createMediaDirStructure();	
-							GUI.initHome();
+							//GUI.initHome();
 						});
 						
 					}, GUI.onFileSystemError);
@@ -197,12 +202,8 @@ var GUI = {
 		// create directory structure
 	},
 	initHome:function(){
-		//console.log(GUI.medias);
-		//console.log('ok');
 		$("#home #balads-list a").each(function(index){
-			//console.log(index+"  "+$(this));	
 			if(GUI.medias[GUI.config.lang].balads[index].downloaded){
-				//$(this).attr("href", "#balade?balad-index="+index);
 				$(this).attr("href", "#balades-download?downloaded=true&balad-index="+index);
 			}else{
 				$(this).attr("href", "#balades-download?downloaded=false&balad-index="+index);
@@ -237,7 +238,7 @@ var GUI = {
 				GUI.fileSystem.root.getFile('trevouxmedias.json', {}, function(fileEntry) {
 							GUI.writeMediaConfig(fileEntry,function(){
 								console.log("config updated !!!!!");
-								GUI.initHome();
+								//GUI.initHome();
 								//$("#balades-download .balades-download-btn").removeClass("ui-disabled");
 								//$("#balades-download .balades-download-btn").addClass('hidden');
 								$("#balades-download .spinner").addClass('hidden');
@@ -305,16 +306,38 @@ var GUI = {
 	hideAudioInterface:function(){
 		$(".audio-player-container").addClass("hidden");
 	},
+	showAndroidVideo:function(){
+		$(".android-video-container").removeClass("hidden");
+	},
+	hideAndroidVideo:function(){
+		$(".android-video-container").addClass("hidden");
+	},
 	stopAll:function(){
 		console.log(GUI.nowPlaying);
 		if(GUI.nowPlaying == "sound"){
 			AudioInterface.stop();
 		}else if(GUI.nowPlaying == "androidVideo"){
-			//VideoPlayer.close();
+			//console.log(JSON.stringify(VideoPlayer));
+			VideoPlayer.close();
 		}else if(GUI.nowPlaying == "iOSVideo"){
 			$('video')[0].pause();	
 		}
 		GUI.nowPlaying = "none";
+	},
+	onAndroidVideoBtn:function(event){
+		console.log("oko");
+		VideoPlayer.play(GUI.androidVideoFilePath,
+			{
+				volume: 0.5,
+				scalingMode: VideoPlayer.SCALING_MODE.SCALE_TO_FIT
+			},
+			function () {
+				console.log("video completed");
+			},
+			function (err) {
+				console.log(err);
+			});
+		GUI.nowPlaying = "androidVideo";
 	},
 	onSettingsButton:function(event){
 		$("body").pagecontainer("change","#settings");
@@ -346,6 +369,10 @@ var GUI = {
 	onHardBackButton:function(){
 		
 	},
+	onAppPause:function(){
+		console.log("pause");
+		GUI.stopAll();
+	},
 	pageChange:function(event,ui){
 		// FROM PAGE
 		if(ui.prevPage !== undefined)
@@ -358,6 +385,7 @@ var GUI = {
 			case "etape":
 				GUI.hideHTMLVideo();
 				GUI.hideAudioInterface();
+				GUI.hideAndroidVideo();
 				GUI.stopAll();
 			break;
 			case "settings":break;
@@ -372,7 +400,12 @@ var GUI = {
 			case "home":break;
 			case "balades-download":
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
-				var downloaded = (GetURLParameters(ui.absUrl)["downloaded"] === 'true');
+				//var downloaded = (GetURLParameters(ui.absUrl)["downloaded"] === 'true');
+				var downloaded = GUI.medias[GUI.config.lang].balads[baladIndex].downloaded;
+				console.log(GUI.config.lang);
+				console.log(GUI.medias[GUI.config.lang].balads[baladIndex]);
+				console.log(downloaded);
+				
 				console.log("downloaded  "+downloaded+"  "+GetURLParameters(ui.absUrl)["downloaded"]);
 				if(!isNaN(baladIndex)){
 					$("#balades-download .balades-title").text(GUI.config.balads[baladIndex].baladTitle);
@@ -398,7 +431,7 @@ var GUI = {
 					$("#balade #balade-header .title").text(GUI.config.balads[baladIndex].baladTitle);
 					$("#balade #balade-header .sub-title").text(GUI.config.balads[baladIndex].baladSubtitle);
 					for(var k=0;k <= GUI.config.balads[baladIndex].etapes[GUI.config.lang].length-1;k++){
-						$("#balade #etapes-list").append('<li data-icon="carat-r"><a href="#etape?balad-index='+baladIndex+'&etape-index='+k+'" data-transition="fade"><div class="etape-li-text">'+GUI.config.balads[baladIndex].etapes[GUI.config.lang][k]+'</div></a></li>');					
+						$("#balade #etapes-list").append('<li><a href="#etape?balad-index='+baladIndex+'&etape-index='+k+'" data-transition="fade"><div class="etape-li-text">'+GUI.config.balads[baladIndex].etapes[GUI.config.lang][k]+'</div></a></li>');					
 					}
 				}				
 				
@@ -408,7 +441,6 @@ var GUI = {
 				console.log("etape");
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
 				var etapeIndex = parseInt(GetURLParameters(ui.absUrl)["etape-index"]);
-				
 				if(baladIndex == 1){//video balad
 					window.resolveLocalFileSystemURL(cordova.file.dataDirectory+GUI.medias[GUI.config.lang].balads[baladIndex].etapes[etapeIndex].filepath,
 						function(entry){
@@ -422,20 +454,10 @@ var GUI = {
 								$('video')[0].play();
 								GUI.nowPlaying = "iOSVideo";
 							}else{
+								GUI.showAndroidVideo();
 								//VideoPlayer.play("file:///android_asset/www/medias/FR/CIVRIEUX/station2.mp4",
-								var filepath = entry.toURL();
-								VideoPlayer.play(filepath,
-									{
-										volume: 0.5,
-										scalingMode: VideoPlayer.SCALING_MODE.SCALE_TO_FIT
-									},
-									function () {
-										console.log("video completed");
-									},
-									function (err) {
-										console.log(err);
-									});
-								GUI.nowPlaying = "androidVideo";
+								GUI.androidVideoFilePath = entry.toURL();
+
 							}		
 						},function(err){
 							console.log(JSON.stringify(err));
