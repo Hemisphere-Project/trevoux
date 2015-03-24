@@ -21,14 +21,16 @@ var AudioInterface = {
 			}
 		});
 		$("#timeline").on("touchstart",function(event){
+			console.log("touchstart");
 			clearInterval(AudioInterface.progressTimerHandler);
 		});
 		// a corriger
 		$("#timeline").on("touchmove",function(event){
+			console.log("touchmove");
 			AudioInterface.movePlayHead(event);
 		});
 		$("#timeline").on("touchend",function(event){
-			//console.log("heeeelllllloooo");
+			console.log("touchend");
 			var duration = GUI.audioPlayer.getDuration()*1000;
 			var clickpercent = (event.originalEvent.changedTouches[0].pageX - $("#timeline").offset().left) / $("#timeline").width();
 			console.log(clickpercent);
@@ -61,7 +63,7 @@ var AudioInterface = {
 				if (position > -1) {
 					var duration = GUI.audioPlayer.getDuration();
 					var progress = (position/duration);
-					console.log(progress);
+					//console.log(progress);
 					var newpos = progress * ($("#timeline").width() - $("#playhead").width());
 					$("#playhead").css("margin-left",newpos + "px");
 				}

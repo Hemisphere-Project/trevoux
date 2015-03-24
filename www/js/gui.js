@@ -375,6 +375,7 @@ var GUI = {
 		GUI.nowPlaying = "none";
 	},
 	onAndroidVideoBtn:function(event){
+		screen.lockOrientation('landscape');
 		VideoPlayer.play(GUI.androidVideoFilePath,
 			{
 				volume: 0.5,
@@ -382,6 +383,7 @@ var GUI = {
 			},
 			function () {
 				console.log("video completed");
+				screen.unlockOrientation();
 			},
 			function (err) {
 				console.log(err);
@@ -416,7 +418,7 @@ var GUI = {
 		}
 	},
 	onHardBackButton:function(){
-		
+		console.log('hard back btn');
 	},
 	onAppPause:function(){
 		console.log("pause");
@@ -581,6 +583,7 @@ var GUI = {
 								$('video')[0].play();
 								GUI.nowPlaying = "iOSVideo";
 							}else{
+								
 								GUI.showAndroidVideo();
 								//VideoPlayer.play("file:///android_asset/www/medias/FR/CIVRIEUX/station2.mp4",
 								GUI.androidVideoFilePath = entry.toURL();

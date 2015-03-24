@@ -47,6 +47,7 @@
 		6F49095180DA4EC3B90729C0 /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9A2D60CC4C496292F356D1 /* CDVSound.m */; };
 		346ACC6E862A4262A305EA96 /* CDVFileTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = DDA0D214E0664221A9EA0404 /* CDVFileTransfer.m */; };
 		893D50C018774DAD8E15FFCB /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB15A355B6C4415AC181B5C /* CDVDevice.m */; };
+		B3BDBFFF3A624ABFA572A04A /* YoikScreenOrientation.m in Sources */ = {isa = PBXBuildFile; fileRef = 53DDCADAB2B04E208AA82DCF /* YoikScreenOrientation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,8 @@
 		F4662FD3EF0D4106A3B3E931 /* CDVFileTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVFileTransfer.h"; path = "org.apache.cordova.file-transfer/CDVFileTransfer.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		CAB15A355B6C4415AC181B5C /* CDVDevice.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVDevice.m"; path = "org.apache.cordova.device/CDVDevice.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		186715423FE64FCAA68E855F /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		53DDCADAB2B04E208AA82DCF /* YoikScreenOrientation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "YoikScreenOrientation.m"; path = "net.yoik.cordova.plugins.screenorientation/YoikScreenOrientation.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		71567DCF31BE4A39ADBC5036 /* YoikScreenOrientation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "YoikScreenOrientation.h"; path = "net.yoik.cordova.plugins.screenorientation/YoikScreenOrientation.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +245,8 @@
 				F4662FD3EF0D4106A3B3E931 /* CDVFileTransfer.h */,
 				CAB15A355B6C4415AC181B5C /* CDVDevice.m */,
 				186715423FE64FCAA68E855F /* CDVDevice.h */,
+				53DDCADAB2B04E208AA82DCF /* YoikScreenOrientation.m */,
+				71567DCF31BE4A39ADBC5036 /* YoikScreenOrientation.h */,
 			);
 			name = Plugins;
 			path = "TrevouxApp/Plugins";
@@ -434,6 +439,7 @@
 				6F49095180DA4EC3B90729C0 /* CDVSound.m in Sources */,
 				346ACC6E862A4262A305EA96 /* CDVFileTransfer.m in Sources */,
 				893D50C018774DAD8E15FFCB /* CDVDevice.m in Sources */,
+				B3BDBFFF3A624ABFA572A04A /* YoikScreenOrientation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,6 +53,10 @@
                         {
                             "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"YoikScreenOrientation\"><param name=\"ios-package\" value=\"YoikScreenOrientation\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -76,6 +80,9 @@
             "PACKAGE_NAME": "com.hemisphere.trevoux"
         },
         "com.moust.cordova.videoplayer": {
+            "PACKAGE_NAME": "com.hemisphere.trevoux"
+        },
+        "net.yoik.cordova.plugins.screenorientation": {
             "PACKAGE_NAME": "com.hemisphere.trevoux"
         }
     },

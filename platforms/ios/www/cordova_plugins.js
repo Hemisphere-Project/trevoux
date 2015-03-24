@@ -64,6 +64,20 @@ module.exports = [
         ]
     },
     {
+        "file": "plugins/net.yoik.cordova.plugins.screenorientation/www/screenorientation.js",
+        "id": "net.yoik.cordova.plugins.screenorientation.screenorientation",
+        "clobbers": [
+            "cordova.plugins.screenorientation"
+        ]
+    },
+    {
+        "file": "plugins/net.yoik.cordova.plugins.screenorientation/www/screenorientation.ios.js",
+        "id": "net.yoik.cordova.plugins.screenorientation.screenorientation.ios",
+        "merges": [
+            "cordova.plugins.screenorientation"
+        ]
+    },
+    {
         "file": "plugins/org.apache.cordova.file/www/DirectoryEntry.js",
         "id": "org.apache.cordova.file.DirectoryEntry",
         "clobbers": [
@@ -219,6 +233,7 @@ module.exports.metadata =
     "org.apache.cordova.file-transfer": "0.5.0",
     "org.apache.cordova.device": "0.3.1-dev",
     "com.moust.cordova.videoplayer": "1.0.0",
+    "net.yoik.cordova.plugins.screenorientation": "1.3.2",
     "org.apache.cordova.file": "1.3.3"
 }
 // BOTTOM OF METADATA

@@ -72,3 +72,6 @@
 .trevouxicon-forward:before {
   content: "\65";
 }
+.trevouxicon-trash:before {
+  content: "\66";
+}

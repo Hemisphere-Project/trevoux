@@ -10,6 +10,7 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/moust/cordova/videoplayer/VideoPlayer$1.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/moust/cordova/videoplayer/VideoPlayer$2.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/moust/cordova/videoplayer/VideoPlayer.class \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/net/yoik/cordova/plugins/screenorientation/YoikScreenOrientation.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/file/ContentFilesystem.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/file/DirectoryManager.class \

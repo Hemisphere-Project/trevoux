@@ -171,17 +171,20 @@ li:nth-child(odd) {
 }
 
 .balades-title-container{
-	margin-left:20px;	
+	margin-left:20px;
 }
 .balades-title{
 	margin-top:30px;
-	font-size: 2.5em;
+	font-size: 2.4em;
 	font-family: "goudysans";
 	letter-spacing: 0.03em;
 	text-align: left;
 }
 .balades-sub-title{
 	text-align: left;
+	font-size: 1.4em;
+	letter-spacing: 0.1em;
+	font-family: "goudyolst";	
 }
 .balades-download-btn-container{
 	margin-top:40px;
@@ -193,8 +196,9 @@ li:nth-child(odd) {
 	font-size: 1.5em !important;
 }
 .balades-credits{
-	margin-top:40px;
+	margin-top:20px;
 	font-size: 0.8em;
+	margin-bottom: 65px;
 }
 .spinner{
 	background-image: url("../img/loading.gif");
@@ -212,7 +216,10 @@ li:nth-child(odd) {
 }
 .forward{
 	margin-left:-0.5em;	
-	transition:  opacity 0.5s;
+	/*transition:  opacity 0.5s;*/
+	padding:60px;
+}
+#balades-download-container{
 }
 #balades-download a{
 	color:white;
@@ -349,15 +356,19 @@ video{
 
 #settings-header{
 	height:100px;
-	font-size: 3em;
+	font-size: 2.4em;
 	font-family: "goudysans";
 	letter-spacing: 0.03em;
 	background-color: #122654;
 	border-style: none;
+	
 }
 #settings-header .ui-title{
-	margin: 0 20%;
+	margin: 0 10%;
 	padding: 0.5em 0;
+}
+#settings-balads-list{
+	margin-bottom:60px;	
 }
 #settings li{
 	text-align:center;

@@ -31,6 +31,10 @@
                         {
                             "xml": "<feature name=\"VideoPlayer\"><param name=\"android-package\" value=\"com.moust.cordova.videoplayer.VideoPlayer\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"YoikScreenOrientation\"><param name=\"android-package\" value=\"net.yoik.cordova.plugins.screenorientation.YoikScreenOrientation\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -76,6 +80,9 @@
             "PACKAGE_NAME": "com.hemisphere.trevoux"
         },
         "com.moust.cordova.videoplayer": {
+            "PACKAGE_NAME": "com.hemisphere.trevoux"
+        },
+        "net.yoik.cordova.plugins.screenorientation": {
             "PACKAGE_NAME": "com.hemisphere.trevoux"
         }
     },
