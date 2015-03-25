@@ -22,20 +22,6 @@ module.exports = [
         ]
     },
     {
-        "file": "plugins/org.apache.cordova.media/www/MediaError.js",
-        "id": "org.apache.cordova.media.MediaError",
-        "clobbers": [
-            "window.MediaError"
-        ]
-    },
-    {
-        "file": "plugins/org.apache.cordova.media/www/Media.js",
-        "id": "org.apache.cordova.media.Media",
-        "clobbers": [
-            "window.Media"
-        ]
-    },
-    {
         "file": "plugins/org.apache.cordova.file-transfer/www/FileTransferError.js",
         "id": "org.apache.cordova.file-transfer.FileTransferError",
         "clobbers": [
@@ -75,6 +61,20 @@ module.exports = [
         "id": "net.yoik.cordova.plugins.screenorientation.screenorientation.ios",
         "merges": [
             "cordova.plugins.screenorientation"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.media/www/MediaError.js",
+        "id": "org.apache.cordova.media.MediaError",
+        "clobbers": [
+            "window.MediaError"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.media/www/Media.js",
+        "id": "org.apache.cordova.media.Media",
+        "clobbers": [
+            "window.Media"
         ]
     },
     {
@@ -229,11 +229,11 @@ module.exports.metadata =
 {
     "org.apache.cordova.splashscreen": "1.0.0",
     "org.apache.cordova.console": "0.2.13",
-    "org.apache.cordova.media": "0.2.16",
     "org.apache.cordova.file-transfer": "0.5.0",
     "org.apache.cordova.device": "0.3.1-dev",
     "com.moust.cordova.videoplayer": "1.0.0",
     "net.yoik.cordova.plugins.screenorientation": "1.3.2",
+    "org.apache.cordova.media": "0.2.16",
     "org.apache.cordova.file": "1.3.3"
 }
 // BOTTOM OF METADATA

@@ -375,6 +375,7 @@ var GUI = {
 		GUI.nowPlaying = "none";
 	},
 	onAndroidVideoBtn:function(event){
+		screen.lockOrientation('landscape');
 		VideoPlayer.play(GUI.androidVideoFilePath,
 			{
 				volume: 0.5,
@@ -382,6 +383,7 @@ var GUI = {
 			},
 			function () {
 				console.log("video completed");
+				screen.unlockOrientation();
 			},
 			function (err) {
 				console.log(err);
@@ -416,7 +418,7 @@ var GUI = {
 		}
 	},
 	onHardBackButton:function(){
-		
+		console.log('hard back btn');
 	},
 	onAppPause:function(){
 		console.log("pause");
@@ -581,6 +583,7 @@ var GUI = {
 								$('video')[0].play();
 								GUI.nowPlaying = "iOSVideo";
 							}else{
+								
 								GUI.showAndroidVideo();
 								//VideoPlayer.play("file:///android_asset/www/medias/FR/CIVRIEUX/station2.mp4",
 								GUI.androidVideoFilePath = entry.toURL();
@@ -589,27 +592,39 @@ var GUI = {
 						},function(err){
 							console.log(JSON.stringify(err));
 						});
-				//var my_media = new Media("file:///android_asset/www/medias/FR/PORT\ BERNALIN/S1\ Ile\ Beyne.mp3",
-				//var my_media = new Media("medias/FR/PORT\ BERNALIN/S1\ Ile\ Beyne.mp3",
 				}else{ // all other balads - audio
 					window.resolveLocalFileSystemURL(cordova.file.dataDirectory+GUI.medias[GUI.config.lang].balads[baladIndex].etapes[etapeIndex].filepath,
 						function(entry){
-							console.log(entry);		
+							//console.log(entry);	
+							//$('audio')[0].src = entry.toURL();
+							document.getElementById('html-audio').src = entry.toURL();
+							
+							/* Method with cordova.media plugin */
+							/*
 							GUI.audioPlayer = new Media(entry.toInternalURL(),
+							//GUI.audioPlayer = new Media("http://trevoux.hmsphr.com/medias/FR/TREVOUX/S1Passerelle.mp3",
+								
 								// success callback
 								function () {
 										console.log("playAudio():Audio Success");
+										
 										AudioInterface.reinit();
 								},
 								// error callback
 								function (err) {
 										console.log("playAudio():Audio Error: " + JSON.stringify(err));
+								},
+								//status callback
+								function(status){
+									AudioInterface.displayDuration(GUI.audioPlayer.getDuration());
 								}
 							);
-							// Play audio
+							
+							// quick patch for status to be called and therefore duration to be updated before user play
+							GUI.audioPlayer.play();
+							GUI.audioPlayer.stop();
+							*/
 							GUI.showAudioInterface();
-							//GUI.audioPlayer.play();
-							//GUI.nowPlaying = "sound";
 						},function(err){
 							console.log(JSON.stringify(err));	
 					});

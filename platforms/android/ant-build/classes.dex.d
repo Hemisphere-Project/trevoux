@@ -73,9 +73,6 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/media/AudioPlayer$STATE.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/media/AudioPlayer.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/media/FileHelper.class \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/plugin/Html5Video$1.class \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/plugin/Html5Video$FileDataStore.class \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/plugin/Html5Video.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/splashscreen/SplashScreen$1.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/splashscreen/SplashScreen$2.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/org/apache/cordova/splashscreen/SplashScreen$3.class \
