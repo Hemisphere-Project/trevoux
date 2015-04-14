@@ -12,7 +12,6 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/res/drawable-port-mdpi/screen.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/res/drawable-port-xhdpi/screen.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/res/drawable-xhdpi/icon.png \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/res/raw/station2.mp4 \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/res/values/strings.xml \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/res/xml/config.xml \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/drawable/icon.png \
@@ -28,6 +27,14 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/drawable-port-mdpi/screen.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/drawable-port-xhdpi/screen.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/drawable-xhdpi/icon.png \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-land-hdpi \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-land-ldpi \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-land-mdpi \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-land-xhdpi \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-port-hdpi \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-port-ldpi \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-port-mdpi \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/res/xml/drawable-port-xhdpi \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/_where-is-www.txt \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/cordova.js \
@@ -193,6 +200,7 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/img/play.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/_cordovaMediaAudioInterface.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/AudioInterface.js \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/fastclick.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/gui.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/index.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/jquery-1.8.2.min.js \

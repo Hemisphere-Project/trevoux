@@ -5,11 +5,17 @@ var GUI = {
 	nowPlaying:"none",
 	audioPlayer:null,
 	androidVideoFilePath:null,
+	etapesDLList:[],
+	currentFileTransfert:null,
 	init:function(){
 					$(document).on("mobileinit",function() {
 							$.mobile.autoInitializePage = false;
 					});
 					$(document).ready(function() {
+							
+							// for faster click on ios
+							FastClick.attach(document.body);
+							
 							$( "[data-role='footer']" ).toolbar({ theme: "a" });
 							window.location.hash = 'lng-select';
 							$.mobile.initializePage();
@@ -235,15 +241,15 @@ var GUI = {
 		//$("#balades-download .dl-progress").text(0);
 		//var self = this;
 		
-		var etapesList = GUI.medias[GUI.config.lang].balads[index].etapes.slice(0);
-		var etapesnbr = etapesList.length;
+		GUI.etapesDLList = GUI.medias[GUI.config.lang].balads[index].etapes.slice(0);
+		var etapesnbr = GUI.etapesDLList.length;
 		
 		function syncDL(etape) 
 		{
 			if(etape){
 				console.log("download !!!!   "+etape.filepath);
-				GUI.downloadMedia(etape,(etapesnbr - etapesList.length -1),etapesnbr,function(){
-					return syncDL(etapesList.shift());		
+				GUI.downloadMedia(etape,(etapesnbr - GUI.etapesDLList.length -1),etapesnbr,function(){
+					return syncDL(GUI.etapesDLList.shift());		
 				});
 			}else{
 				console.log("list downloaded !!");
@@ -259,7 +265,7 @@ var GUI = {
 				}, GUI.onFileSystemError);
 			}
 		}
-		syncDL(etapesList.shift());
+		syncDL(GUI.etapesDLList.shift());
 		
 		//penser à blocker la nav pendant le téléchargement (ou rajouter un abort si btn back)
 		
@@ -267,13 +273,13 @@ var GUI = {
 		
 	},
 	downloadMedia:function(media,ei,en,onfinish){
-		var ft = new FileTransfer();
+		GUI.currentFileTransfert = new FileTransfer();
 		var uri = encodeURI(GUI.config.mediasUrl+media.filepath);
 		var downloadPath = cordova.file.dataDirectory + media.filepath;
 		//console.log(downloadPath);
-		ft.onprogress = function(progressEvent) {
+		GUI.currentFileTransfert.onprogress = function(progressEvent) {
 			if (progressEvent.lengthComputable) {
-				//console.log(etapesfrac);
+				//console.log("local progress  "+progressEvent.loaded);
 				var perc = Math.floor(((progressEvent.loaded / progressEvent.total)/en + ei/en)*100);
 				console.log(perc + "% loaded...");
 				$("#balades-download .dl-progress").text(perc);
@@ -282,7 +288,7 @@ var GUI = {
 			}
 		};
 							
-		ft.download(uri, downloadPath, 
+		GUI.currentFileTransfert.download(uri, downloadPath, 
 		function(entry) {
 			onfinish();
 			//var media = new Media(entry.fullPath, null, function(e) { alert(JSON.stringify(e));});
@@ -290,8 +296,36 @@ var GUI = {
 			
 		}, 
 		function(error) {
-			alert('Crap something went wrong...');	
+			if(error.code == FileTransferError.ABORT_ERR){
+				GUI.resetDownload();
+			}else{
+				alert('No Data connection');
+				GUI.resetDownload();
+			}
 		});		
+	},
+	abortMediaDownload:function(callback){
+		if(GUI.currentFileTransfert){
+			GUI.currentFileTransfert.abort();
+			GUI.etapesDLList = [];
+			GUI.currentFileTransfert = null;
+		}
+	},
+	resetDownload:function(){
+		// balades-dowload
+		$("#balades-download .balades-download-btn").removeClass('hidden');
+		$("#balades-download .spinner").addClass('hidden');
+		$("#balades-download .dl-progress").addClass('hidden');
+		//settings
+		$(".settings-btn").each(function() {
+			$(this).removeClass("ui-disabled");	
+			
+			if($(this).hasClass("spinner")){
+				$(this).removeClass("spinner");
+				$(this).addClass("trevouxicon-download");
+			}
+		});
+		
 	},
 	deleteMediaList:function(index,callback){
 		console.log('hay');
@@ -426,8 +460,24 @@ var GUI = {
 	},
 	onSettingsAction:function(event){
 		//console.log(event);
+		if($(this).hasClass("spinner")){// the only case where the button is enabled but has no effect
+			return;
+		}
+		
 		var self = this;
-		$(this).addClass("ui-disabled");
+		function removeAllDisabled(){
+			$(".settings-btn").each(function() {
+					$(this).removeClass("ui-disabled");
+			});
+		}	
+		function addAllDisabled(){
+			$(".settings-btn").each(function() {
+					$(this).addClass("ui-disabled");
+			});
+		}
+		
+		addAllDisabled();
+		
 		var id=event.currentTarget.id;
 		switch(id){
 			case "balad-0":
@@ -437,14 +487,17 @@ var GUI = {
 						$(self).removeClass("trevouxicon-trash");
 						$(self).addClass("trevouxicon-download");
 						$(self).removeClass("ui-disabled");
+						removeAllDisabled();
 					});
 				}else{
 					$(this).removeClass("trevouxicon-download");
 					$(this).addClass("spinner");
 					$(this).removeClass("ui-disabled");
+					
 					GUI.downloadMediaList(0,function(){
 						$(self).removeClass("spinner");
 						$(self).addClass("trevouxicon-trash");
+						removeAllDisabled();
 					});
 				}
 			break;
@@ -454,14 +507,17 @@ var GUI = {
 						$(self).removeClass("trevouxicon-trash");
 						$(self).addClass("trevouxicon-download");
 						$(self).removeClass("ui-disabled");
+						removeAllDisabled();
 					});
 				}else{
 					$(this).removeClass("trevouxicon-download");
 					$(this).addClass("spinner");
 					$(this).removeClass("ui-disabled");
+					
 					GUI.downloadMediaList(1,function(){
 						$(self).removeClass("spinner");
 						$(self).addClass("trevouxicon-trash");
+						removeAllDisabled();
 					});
 				}
 			break;
@@ -471,14 +527,17 @@ var GUI = {
 						$(self).removeClass("trevouxicon-trash");
 						$(self).addClass("trevouxicon-download");
 						$(self).removeClass("ui-disabled");
+						removeAllDisabled();
 					});
 				}else{
 					$(this).removeClass("trevouxicon-download");
 					$(this).addClass("spinner");
 					$(this).removeClass("ui-disabled");
+					
 					GUI.downloadMediaList(2,function(){
 						$(self).removeClass("spinner");
 						$(self).addClass("trevouxicon-trash");
+						removeAllDisabled();
 					});
 				}
 			break;
@@ -488,14 +547,17 @@ var GUI = {
 						$(self).removeClass("trevouxicon-trash");
 						$(self).addClass("trevouxicon-download");
 						$(self).removeClass("ui-disabled");
+						removeAllDisabled();
 					});
 				}else{
 					$(this).removeClass("trevouxicon-download");
 					$(this).addClass("spinner");
 					$(this).removeClass("ui-disabled");
+					
 					GUI.downloadMediaList(3,function(){
 						$(self).removeClass("spinner");
 						$(self).addClass("trevouxicon-trash");
+						removeAllDisabled();
 					});
 				}
 			break;
@@ -508,6 +570,8 @@ var GUI = {
 		switch(ui.prevPage[0].id){
 			case "home":break;
 			case "balades-download":
+				if(GUI.currentFileTransfert)
+					GUI.abortMediaDownload();
 			break;
 			case "balade":
 			break;
@@ -516,8 +580,13 @@ var GUI = {
 				GUI.hideAudioInterface();
 				GUI.hideAndroidVideo();
 				GUI.stopAll();
+				AudioInterface.reinit();
 			break;
-			case "settings":break;
+			case "settings":
+				if(GUI.currentFileTransfert)
+						GUI.abortMediaDownload();	
+				$("#nf-settings-btn").show();
+			break;
 		}
 
 		// TO PAGE
@@ -633,8 +702,10 @@ var GUI = {
 				
 			break;
 			case "settings":
+				$("#nf-settings-btn").hide();
+				
 				$( "#settings .settings-btn" ).each(function( index ) {
-					$(this).removeClass("trevouxicon-trash trevouxicon-download");
+					$(this).removeClass("trevouxicon-trash trevouxicon-download ui-disabled");
 					if(GUI.medias[GUI.config.lang].balads[index].downloaded){
 						$(this).addClass("trevouxicon-trash");
 					}else{
