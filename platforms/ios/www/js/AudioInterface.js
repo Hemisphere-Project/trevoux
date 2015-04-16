@@ -59,7 +59,7 @@ var AudioInterface = {
 			//console.log("touchend");
 			var duration = GUI.audioPlayer.duration;
 			var clickpercent = (event.originalEvent.changedTouches[0].pageX - $("#timeline").offset().left) / $("#timeline").width();
-			console.log(clickpercent);
+			//console.log(clickpercent);
 			GUI.audioPlayer.currentTime = duration*clickpercent;
 			$(GUI.audioPlayer).bind("timeupdate",AudioInterface.onTimeUpdate);
 			
@@ -105,7 +105,7 @@ var AudioInterface = {
 				if (position > -1) {
 					var duration = GUI.audioPlayer.getDuration();
 					var progress = (position/duration);
-					console.log(progress);
+					//console.log(progress);
 					var newpos = progress * ($("#timeline").width() - $("#playhead").width());
 					$("#playhead").css("margin-left",newpos + "px");
 					AudioInterface.displayProgress(position);
@@ -157,7 +157,7 @@ var AudioInterface = {
 	},
 	displayDuration:function(duration){
 		AudioInterface.durationInfo.tsec = Math.round(duration);
-		console.log("AudioInterface.durationInfo.tsec = "+AudioInterface.durationInfo.tsec);
+		//console.log("AudioInterface.durationInfo.tsec = "+AudioInterface.durationInfo.tsec);
 		AudioInterface.durationInfo.minutes = Math.floor(AudioInterface.durationInfo.tsec / 60);
 		AudioInterface.durationInfo.seconds = AudioInterface.durationInfo.tsec - AudioInterface.durationInfo.minutes * 60;
 		AudioInterface.durationInfo.secondsS = AudioInterface.durationInfo.seconds < 10 ? "0"+AudioInterface.durationInfo.seconds.toString() : AudioInterface.durationInfo.seconds.toString();

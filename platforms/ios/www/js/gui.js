@@ -17,7 +17,7 @@ var GUI = {
 							FastClick.attach(document.body);
 							
 							$( "[data-role='footer']" ).toolbar({ theme: "a" });
-							window.location.hash = 'lng-select';
+							window.location.hash = 'splash2';
 							$.mobile.initializePage();
 							
 							$.getJSON( "trevoux.config", function( data ) {
@@ -79,6 +79,8 @@ var GUI = {
 			console.log("ready tight");
 		}*/
 		
+		//navigator.splashscreen.show();
+		
 		document.addEventListener("backbutton", GUI.onHardBackButton, false);
 		document.addEventListener("pause", GUI.onAppPause, false);
 		
@@ -88,17 +90,24 @@ var GUI = {
 				GUI.loadMediaConfig();
 			}, 
 		GUI.onFileSystemError);
+		
+		
+		// splash 2 timeout
+		setTimeout(function(){
+			$("body").pagecontainer("change","#lng-select");
+		},3000);
+		
 	},
 	loadMediaConfig:function(){
 		GUI.fileSystem.root.getFile('trevouxmedias.json', {}, function(fileEntry) {
 			fileEntry.file(function(file) {
-					console.log(file);
+					//console.log(file);
 					var reader = new FileReader();
 					reader.onloadend = function(e) {
 							//var txtArea = document.createElement('textarea');
 							//txtArea.value = this.result;
-							console.log('yay');
-							console.log(this.result);
+							//console.log('yay');
+							//console.log(this.result);
 							GUI.medias = JSON.parse(this.result);
 							//document.body.appendChild(txtArea);
 							//GUI.initHome();
@@ -106,13 +115,13 @@ var GUI = {
 					reader.readAsText(file);
 			}, GUI.onFileSystemError);
 		},function(error){
-			console.log("there");
+			//console.log("there");
 			console.log(JSON.stringify(error));
 			if(error.code == FileError.NOT_FOUND_ERR){// code 1
 				// load default trevoux.media
 				// create file
 				// write file
-				console.log("here");
+				//console.log("here");
 				$.getJSON( "trevouxmedias.json", function( data ) {
 					//console.log(JSON.stringify(GUI.fileSystem.root));
 					GUI.medias = data;
@@ -141,7 +150,7 @@ var GUI = {
 				console.log('Write failed: ' + e.toString());
 			};
 			// Create a new Blob and write it to log.txt.
-			console.log("gang");
+			//console.log("gang");
 			var blob = new Blob([JSON.stringify(GUI.medias)], {type: 'text/plain'});
 			fileWriter.write(blob);
 		}, GUI.onFileSystemError);
@@ -160,7 +169,7 @@ var GUI = {
 		];
 		
 		function createDir(rootDirEntry, folders) {
-			console.log(folders);
+			//console.log(folders);
 		  // Throw out './' or '/' and move on to prevent something like '/foo/.//bar'.
 		  if (folders[0] == '.' || folders[0] == '') {
 			folders = folders.slice(1);
@@ -234,7 +243,7 @@ var GUI = {
 		
 		
 		
-		console.log("download !!"+index);
+		//console.log("download !!"+index);
 		//$(this).addClass("hidden");
 		//$("#balades-download .spinner").removeClass("hidden");
 		//$("#balades-download .dl-progress").removeClass("hidden");
@@ -247,16 +256,16 @@ var GUI = {
 		function syncDL(etape) 
 		{
 			if(etape){
-				console.log("download !!!!   "+etape.filepath);
+				//console.log("download !!!!   "+etape.filepath);
 				GUI.downloadMedia(etape,(etapesnbr - GUI.etapesDLList.length -1),etapesnbr,function(){
 					return syncDL(GUI.etapesDLList.shift());		
 				});
 			}else{
-				console.log("list downloaded !!");
+				//console.log("list downloaded !!");
 				GUI.medias[GUI.config.lang].balads[index].downloaded = true;
 				GUI.fileSystem.root.getFile('trevouxmedias.json', {}, function(fileEntry) {
 							GUI.writeMediaConfig(fileEntry,function(){
-								console.log("config updated !!!!!");
+								//console.log("config updated !!!!!");
 								//$("#balades-download .spinner").addClass('hidden');
 								//$("#balades-download .dl-progress").addClass('hidden');
 
@@ -281,10 +290,10 @@ var GUI = {
 			if (progressEvent.lengthComputable) {
 				//console.log("local progress  "+progressEvent.loaded);
 				var perc = Math.floor(((progressEvent.loaded / progressEvent.total)/en + ei/en)*100);
-				console.log(perc + "% loaded...");
+				//console.log(perc + "% loaded...");
 				$("#balades-download .dl-progress").text(perc);
 			} else {
-				console.log("Loading");
+				//console.log("Loading");
 			}
 		};
 							
@@ -328,23 +337,23 @@ var GUI = {
 		
 	},
 	deleteMediaList:function(index,callback){
-		console.log('hay');
+		//console.log('hay');
 		var etapesList = GUI.medias[GUI.config.lang].balads[index].etapes.slice(0);
 		var etapesnbr = etapesList.length;
 		
 		function sync(etape) 
 		{
 			if(etape){
-				console.log("delete !!!!   "+etape.filepath);
+				//console.log("delete !!!!   "+etape.filepath);
 				GUI.deleteMedia(etape,function(){
 					return sync(etapesList.shift());		
 				});
 			}else{
-				console.log("list deleted !!");
+				//console.log("list deleted !!");
 				GUI.medias[GUI.config.lang].balads[index].downloaded = false;
 				GUI.fileSystem.root.getFile('trevouxmedias.json', {}, function(fileEntry) {
 							GUI.writeMediaConfig(fileEntry,function(){
-								console.log("config updated !!!!!");
+								//console.log("config updated !!!!!");
 								//$("#balades-download .spinner").addClass('hidden');
 								//$("#balades-download .dl-progress").addClass('hidden');
 
@@ -356,13 +365,13 @@ var GUI = {
 		sync(etapesList.shift());
 	},
 	deleteMedia:function(media,finish){
-		console.log("thing");
+		//console.log("thing");
 		window.resolveLocalFileSystemURL(cordova.file.dataDirectory+media.filepath,
 			function(fileEntry){
-				console.log("thay");
+				//console.log("thay");
 				
 				fileEntry.remove(function() {
-						console.log('File removed.');
+						//console.log('File removed.');
 						finish();
 				}, GUI.onFileSystemError);
 				
@@ -397,7 +406,7 @@ var GUI = {
 		$(".android-video-container").addClass("hidden");
 	},
 	stopAll:function(){
-		console.log(GUI.nowPlaying);
+		//console.log(GUI.nowPlaying);
 		if(GUI.nowPlaying == "sound"){
 			AudioInterface.stop();
 		}else if(GUI.nowPlaying == "androidVideo"){
@@ -416,7 +425,7 @@ var GUI = {
 				scalingMode: VideoPlayer.SCALING_MODE.SCALE_TO_FIT
 			},
 			function () {
-				console.log("video completed");
+				//console.log("video completed");
 				screen.unlockOrientation();
 			},
 			function (err) {
@@ -431,7 +440,6 @@ var GUI = {
 		$("body").pagecontainer("change","#home");
 	},
 	onBackButton:function(event){
-		console.log();
 		var currentPageId = $("body").pagecontainer( "getActivePage" )[0].id;
 		switch(currentPageId){
 			case "home":
@@ -452,10 +460,10 @@ var GUI = {
 		}
 	},
 	onHardBackButton:function(){
-		console.log('hard back btn');
+		//console.log('hard back btn');
 	},
 	onAppPause:function(){
-		console.log("pause");
+		//console.log("pause");
 		GUI.stopAll();
 	},
 	onSettingsAction:function(event){
@@ -568,6 +576,7 @@ var GUI = {
 		// FROM PAGE
 		if(ui.prevPage !== undefined)
 		switch(ui.prevPage[0].id){
+			case "splash2":break;
 			case "home":break;
 			case "balades-download":
 				if(GUI.currentFileTransfert)
@@ -592,6 +601,9 @@ var GUI = {
 		// TO PAGE
 		//console.log(ui.toPage);
 		switch(ui.toPage[0].id){
+			case "splash2":
+				$("#nav-foot").hide();	
+			break;
 			case "lng-select":
 				$("#nav-foot").hide();
 			break;
@@ -600,11 +612,11 @@ var GUI = {
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
 				//var downloaded = (GetURLParameters(ui.absUrl)["downloaded"] === 'true');
 				var downloaded = GUI.medias[GUI.config.lang].balads[baladIndex].downloaded;
-				console.log(GUI.config.lang);
-				console.log(GUI.medias[GUI.config.lang].balads[baladIndex]);
-				console.log(downloaded);
+				//console.log(GUI.config.lang);
+				//console.log(GUI.medias[GUI.config.lang].balads[baladIndex]);
+				//console.log(downloaded);
 				
-				console.log("downloaded  "+downloaded+"  "+GetURLParameters(ui.absUrl)["downloaded"]);
+				//console.log("downloaded  "+downloaded+"  "+GetURLParameters(ui.absUrl)["downloaded"]);
 				if(!isNaN(baladIndex)){
 					$("#balades-download .balades-title").text(GUI.config.balads[baladIndex].baladTitle);
 					$("#balades-download .balades-sub-title").text(GUI.config.balads[baladIndex].baladSubtitle);
@@ -636,19 +648,19 @@ var GUI = {
 				
 			break;
 			case "etape":
-				console.log("etape");
+				//console.log("etape");
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
 				var etapeIndex = parseInt(GetURLParameters(ui.absUrl)["etape-index"]);
 				if(baladIndex == 1){//video balad
 					window.resolveLocalFileSystemURL(cordova.file.dataDirectory+GUI.medias[GUI.config.lang].balads[baladIndex].etapes[etapeIndex].filepath,
 						function(entry){
 							if(device.platform != "Android"){
-								console.log("not android");
+								//console.log("not android");
 								//$('video')[0].src = entry.toURL();
 								///$(".video-container").removeClass("hidden");
 								GUI.showHTMLVideo();
 								$('video')[0].src = entry.toURL();
-								console.log($('video')[0].src);
+								//console.log($('video')[0].src);
 								$('video')[0].play();
 								GUI.nowPlaying = "iOSVideo";
 							}else{
@@ -731,7 +743,7 @@ function GetURLParameters(inputString){
 		
 		var inputArray = inputString.split('?')
 		if(inputArray.length<=1){
-			console.log('no parameters');
+			//console.log('no parameters');
 			return result;
 		}else
 			parameterString = inputArray[1];

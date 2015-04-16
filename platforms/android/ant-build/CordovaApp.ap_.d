@@ -198,6 +198,9 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/img/logo.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/img/pause.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/img/play.png \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/img/splash2 \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/img/splash2/landscape.png \
+/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/img/splash2/portrait.png \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/_cordovaMediaAudioInterface.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/AudioInterface.js \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/assets/www/js/fastclick.js \

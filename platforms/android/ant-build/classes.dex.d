@@ -3,7 +3,6 @@
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/hemisphere/trevoux/CordovaApp.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/hemisphere/trevoux/R$attr.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/hemisphere/trevoux/R$drawable.class \
-/Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/hemisphere/trevoux/R$raw.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/hemisphere/trevoux/R$string.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/hemisphere/trevoux/R$xml.class \
 /Volumes/Storage HD/repository/miscellaneous/2015/appZigZagGone/trevoux/platforms/android/ant-build/classes/com/hemisphere/trevoux/R.class \
