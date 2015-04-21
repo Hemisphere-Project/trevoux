@@ -17,7 +17,7 @@ var GUI = {
 							FastClick.attach(document.body);
 							
 							$( "[data-role='footer']" ).toolbar({ theme: "a" });
-							window.location.hash = 'splash2';
+							window.location.hash = 'lng-select';
 							$.mobile.initializePage();
 							
 							$.getJSON( "trevoux.config", function( data ) {

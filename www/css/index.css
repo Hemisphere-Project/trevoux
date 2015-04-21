@@ -435,7 +435,7 @@ video{
 
 /* vertical center above a certain height */
 @media only screen and (min-height : 600px) and (min-width : 480px) {
-	.lng-container{
+/*	.lng-container{
 		position:absolute;
 		height:438px;
 		width:100%;
@@ -452,7 +452,8 @@ video{
 		margin-right:auto;
 		top:50%;
 		margin-top:-200px;
-	}
+	}*/
+
 }
 
 

@@ -611,6 +611,8 @@ var GUI = {
 			case "balades-download":
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
 				//var downloaded = (GetURLParameters(ui.absUrl)["downloaded"] === 'true');
+				console.log(GUI.medias[GUI.config.lang]);
+				console.log(baladIndex);
 				var downloaded = GUI.medias[GUI.config.lang].balads[baladIndex].downloaded;
 				//console.log(GUI.config.lang);
 				//console.log(GUI.medias[GUI.config.lang].balads[baladIndex]);
