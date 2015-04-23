@@ -487,7 +487,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = TrevouxApp;
-				PROVISIONING_PROFILE = "1da6383b-55fe-45bf-b08f-c53f1a527379";
+				PROVISIONING_PROFILE = "bb04866f-5dc2-47e7-a9e2-409364950a0d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -519,7 +519,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = TrevouxApp;
-				PROVISIONING_PROFILE = "1da6383b-55fe-45bf-b08f-c53f1a527379";
+				PROVISIONING_PROFILE = "bb04866f-5dc2-47e7-a9e2-409364950a0d";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

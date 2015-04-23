@@ -235,18 +235,18 @@ li:nth-child(odd) {
 /** balade **/
 
 #balade-header{
-	height:100px;
+	height:80px;
 	background-color: #122654;
 	padding-left: 20px;
 }
 
 #balade #balade-header .title{
-	font-size: 2.4em;
+	font-size: 1.8em;
 	letter-spacing: 0.03em;
 	font-family: "goudysans";	
 }
 #balade #balade-header .sub-title{
-	font-size: 1.4em;
+	font-size: 1.0em;
 	letter-spacing: 0.1em;
 	font-family: "goudyolst";	
 	
