@@ -19,6 +19,10 @@
 					{
 						"downloaded":false,
 						"filepath":"FR/TREVOUX/S5Larueduport.mp3"
+					},
+					{
+						"downloaded":false,
+						"filepath":"FR/TREVOUX/S6JeuxenborddeSaone.mp3"
 					}
 				]
 			},
@@ -28,6 +32,10 @@
 					{
 						"downloaded":false,
 						"filepath":"FR/CIVRIEUX/station2.mp4"
+					},
+					{
+						"downloaded":false,
+						"filepath":"FR/CIVRIEUX/station0.mp4"
 					},
 					{
 						"downloaded":false,
@@ -44,11 +52,11 @@
 				"etapes":[
 					{
 						"downloaded":false,
-						"filepath":"FR/PORTBERNALIN/S1IleBeyne.mp3"
+						"filepath":"FR/PORTBERNALIN/S1Rpechedenuit.mp3"
 					},
 					{
 						"downloaded":false,
-						"filepath":"FR/PORTBERNALIN/S1Rpechedenuit.mp3"
+						"filepath":"FR/PORTBERNALIN/S2Rloisirs.mp3"
 					},
 					{
 						"downloaded":false,
@@ -56,7 +64,11 @@
 					},
 					{
 						"downloaded":false,
-						"filepath":"FR/PORTBERNALIN/S2Rloisirs.mp3"
+						"filepath":"FR/PORTBERNALIN/S1IleBeyne.mp3"
+					},
+					{
+						"downloaded":false,
+						"filepath":"FR/PORTBERNALIN/S5Transportfluvial.mp3"
 					},
 					{
 						"downloaded":false,
@@ -69,10 +81,6 @@
 					{
 						"downloaded":false,
 						"filepath":"FR/PORTBERNALIN/S4RPeche.mp3"
-					},
-					{
-						"downloaded":false,
-						"filepath":"FR/PORTBERNALIN/S5Transportfluvial.mp3"
 					}
 				]
 			},
@@ -97,11 +105,11 @@
 					},
 					{
 						"downloaded":false,
-						"filepath":"FR/SAINTBERNARD/S3RLesfrancsbords.mp3"
+						"filepath":"FR/SAINTBERNARD/S3a4Bifurcationetlapeupleraie.mp3"
 					},
 					{
 						"downloaded":false,
-						"filepath":"FR/SAINTBERNARD/S3a4Bifurcationetlapeupleraie.mp3"
+						"filepath":"FR/SAINTBERNARD/S3RLesfrancsbords.mp3"
 					},
 					{
 						"downloaded":false,
@@ -151,6 +159,10 @@
 					},
 					{
 						"downloaded":false,
+						"filepath":"EN/CIVRIEUX/station0-engl.mp4"
+					},
+					{
+						"downloaded":false,
 						"filepath":"EN/CIVRIEUX/station3-engl.mp4"
 					},
 					{
@@ -164,11 +176,11 @@
 				"etapes":[
 					{
 						"downloaded":false,
-						"filepath":"EN/PORTBERNALIN/S1IleBeyne.mp3"
+						"filepath":"EN/PORTBERNALIN/S1RNightfishing.mp3"
 					},
 					{
 						"downloaded":false,
-						"filepath":"EN/PORTBERNALIN/S1RNightfishing.mp3"
+						"filepath":"EN/PORTBERNALIN/S2RLeisureactivities.mp3"
 					},
 					{
 						"downloaded":false,
@@ -176,7 +188,11 @@
 					},
 					{
 						"downloaded":false,
-						"filepath":"EN/PORTBERNALIN/S2RLeisureactivities.mp3"
+						"filepath":"EN/PORTBERNALIN/S1IleBeyne.mp3"
+					},
+					{
+						"downloaded":false,
+						"filepath":"EN/PORTBERNALIN/S5Rivertransport.mp3"
 					},
 					{
 						"downloaded":false,
@@ -189,10 +205,6 @@
 					{
 						"downloaded":false,
 						"filepath":"EN/PORTBERNALIN/S4RFishing.mp3"
-					},
-					{
-						"downloaded":false,
-						"filepath":"EN/PORTBERNALIN/S5Rivertransport.mp3"
 					}
 				]
 			},
@@ -217,11 +229,11 @@
 					},
 					{
 						"downloaded":false,
-						"filepath":"EN/SAINTBERNARD/S3RThefrancsbords.mp3"
+						"filepath":"EN/SAINTBERNARD/S4to4Forkandthepoplarplantation.mp3"
 					},
 					{
 						"downloaded":false,
-						"filepath":"EN/SAINTBERNARD/S4to4Forkandthepoplarplantation.mp3"
+						"filepath":"EN/SAINTBERNARD/S3RThefrancsbords.mp3"
 					},
 					{
 						"downloaded":false,

@@ -22,7 +22,7 @@ var GUI = {
 							
 							$.getJSON( "trevoux.config", function( data ) {
 									GUI.config = data;
-									console.log(GUI.config);
+									//console.log(GUI.config);
 							});
 							
 							$("body").pagecontainer({
@@ -84,6 +84,7 @@ var GUI = {
 		document.addEventListener("backbutton", GUI.onHardBackButton, false);
 		document.addEventListener("pause", GUI.onAppPause, false);
 		
+		window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0,
 			function(fs) {
 				GUI.fileSystem = fs;
@@ -102,11 +103,11 @@ var GUI = {
 		GUI.fileSystem.root.getFile('trevouxmedias.json', {}, function(fileEntry) {
 			fileEntry.file(function(file) {
 					//console.log(file);
+					//console.log('yay');
 					var reader = new FileReader();
 					reader.onloadend = function(e) {
 							//var txtArea = document.createElement('textarea');
 							//txtArea.value = this.result;
-							//console.log('yay');
 							//console.log(this.result);
 							GUI.medias = JSON.parse(this.result);
 							//document.body.appendChild(txtArea);
@@ -116,7 +117,7 @@ var GUI = {
 			}, GUI.onFileSystemError);
 		},function(error){
 			//console.log("there");
-			console.log(JSON.stringify(error));
+			//console.log(JSON.stringify(error));
 			if(error.code == FileError.NOT_FOUND_ERR){// code 1
 				// load default trevoux.media
 				// create file
@@ -140,7 +141,7 @@ var GUI = {
 		});
 	},
 	writeMediaConfig:function(fileEntry,onfinish){
-		// Create a FileWriter object for our FileEntry (log.txt).
+		// Create a FileWriter object for our FileEntry
 		fileEntry.createWriter(function(fileWriter) {
 			fileWriter.onwriteend = function(e) {
 				console.log('trevouxmedia.json Write completed.');
@@ -151,8 +152,31 @@ var GUI = {
 			};
 			// Create a new Blob and write it to log.txt.
 			//console.log("gang");
-			var blob = new Blob([JSON.stringify(GUI.medias)], {type: 'text/plain'});
+			
+			/* patch for Blob incompatible webviews *******************/
+			try{
+				var blob = new Blob([JSON.stringify(GUI.medias)], {type: 'text/plain'});
+			}
+			catch(e){
+				window.BlobBuilder = window.BlobBuilder || 
+							 window.WebKitBlobBuilder || 
+							 window.MozBlobBuilder || 
+							 window.MSBlobBuilder;
+				
+				if(window.BlobBuilder){
+					var bb = new BlobBuilder();
+					bb.append([JSON.stringify(GUI.medias)]);
+					var blob = bb.getBlob("text/plain");
+				}else{
+					throw "No Blob or BlobBuilder constructor.";
+				}
+			}
+			
 			fileWriter.write(blob);
+			
+			/************************************************/
+			//var blob = new Blob([JSON.stringify(GUI.medias)], {type: 'text/plain'});
+			//fileWriter.write(blob);
 		}, GUI.onFileSystemError);
 		
 	},
@@ -449,7 +473,8 @@ var GUI = {
 				window.history.back();
 			break;
 			case "balade":
-				window.history.back();
+				//window.history.back();
+				$("body").pagecontainer("change","#home");
 			break;
 			case "etape":
 				window.history.back();
@@ -607,12 +632,23 @@ var GUI = {
 			case "lng-select":
 				$("#nav-foot").hide();
 			break;
-			case "home":break;
+			case "home":
+				$("#home .balades-li-title").each(function(index){
+						$(this).text(GUI.config.balads[index].baladTitle[GUI.config.lang]);
+				});
+				$("#home .balades-li-text").each(function(index){
+						$(this).text(GUI.config.balads[index].baladSubtitle[GUI.config.lang]);
+				});
+				
+				
+				
+				
+			break;
 			case "balades-download":
 				var baladIndex = parseInt(GetURLParameters(ui.absUrl)["balad-index"]);
 				//var downloaded = (GetURLParameters(ui.absUrl)["downloaded"] === 'true');
-				console.log(GUI.medias[GUI.config.lang]);
-				console.log(baladIndex);
+				//console.log(GUI.medias[GUI.config.lang]);
+				//console.log(baladIndex);
 				var downloaded = GUI.medias[GUI.config.lang].balads[baladIndex].downloaded;
 				//console.log(GUI.config.lang);
 				//console.log(GUI.medias[GUI.config.lang].balads[baladIndex]);
@@ -620,8 +656,8 @@ var GUI = {
 				
 				//console.log("downloaded  "+downloaded+"  "+GetURLParameters(ui.absUrl)["downloaded"]);
 				if(!isNaN(baladIndex)){
-					$("#balades-download .balades-title").text(GUI.config.balads[baladIndex].baladTitle);
-					$("#balades-download .balades-sub-title").text(GUI.config.balads[baladIndex].baladSubtitle);
+					$("#balades-download .balades-title").text(GUI.config.balads[baladIndex].baladTitle[GUI.config.lang]);
+					$("#balades-download .balades-sub-title").text(GUI.config.balads[baladIndex].baladSubtitle[GUI.config.lang]);
 					
 					$("#balades-download .balades-download-btn").attr("href", "#balad-index="+baladIndex)
 					
@@ -640,8 +676,8 @@ var GUI = {
 					
 					$("#balade #etapes-list").empty();
 					
-					$("#balade #balade-header .title").text(GUI.config.balads[baladIndex].baladTitle);
-					$("#balade #balade-header .sub-title").text(GUI.config.balads[baladIndex].baladSubtitle);
+					$("#balade #balade-header .title").text(GUI.config.balads[baladIndex].baladTitle[GUI.config.lang]);
+					$("#balade #balade-header .sub-title").text(GUI.config.balads[baladIndex].baladSubtitle[GUI.config.lang]);
 					for(var k=0;k <= GUI.config.balads[baladIndex].etapes[GUI.config.lang].length-1;k++){
 						$("#balade #etapes-list").append('<li><a href="#etape?balad-index='+baladIndex+'&etape-index='+k+'" data-transition="fade"><div class="etape-li-text">'+GUI.config.balads[baladIndex].etapes[GUI.config.lang][k]+'</div></a></li>');					
 					}
